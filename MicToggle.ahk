@@ -1,16 +1,20 @@
 ﻿; Toggle mic on/off
 #SingleInstance force
 
+; read ini file
+IniRead, DeviceName, MicToggleSettings.ini, Settings, DeviceName, MASTER
+IniRead, DeviceNumber, MicToggleSettings.ini, Settings, DeviceNumber, 1
+
 SysGet, Bounds, MonitorWorkArea
-xpos := BoundsRight-120
-ypos := BoundsBottom-120
+xpos := BoundsRight-70
+ypos := BoundsBottom-95
 
 Gui, Add, Picture, X0 Y0, mic.png
 ; last two options remove title bar and make window unable to be alt+tabbed into, respectively
 Gui +LastFound -Caption +E0x80	+AlwaysOnTop		
 
 WinGet ID, ID
-WinSet Transparent, 50
+WinSet Transparent, 75
 
 ; the following magic makes a hole to click through the window to whatever's below
 ; created by VxE here: https://autohotkey.com/board/topic/34900-mouse-click-through-window/
@@ -56,13 +60,13 @@ RegionNotBox( L="", T="", R="", B="" )
 
 !m::
 	; use the soundcard analysis script (https://www.autohotkey.com/docs/commands/SoundSet.htm) to find device number
-	SoundSet, +1, , mute, 6
-	SoundGet, Muted, , mute, 6
+	SoundSet, +1, %DeviceName%, mute, %DeviceNumber%
+	SoundGet, Muted, , mute, %DeviceNumber%
 	
 	;Mute is "on"/mic is off
 	if (Muted == "On")	{
 		SoundPlay, micDowntone.wav
-		Gui Show, W100 H100 X%xpos% Y%ypos%
+		Gui Show, W50 H75 X%xpos% Y%ypos%
 	} else {
 		SoundPlay, micUptone.wav
 		WinHide ahk_id %ID%  ; Hide transparent window
