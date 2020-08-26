@@ -1,7 +1,7 @@
 # MicToggle
 This AutoHotKey script toggles the mic off and on with Alt+M, with auditory cues for muting/unmuting and a visual indicator for when muted.
 
-To toggle the right device, use analysis.exe (compiled from a script found [here](https://www.autohotkey.com/docs/commands/SoundSet.htm)) to find the device number and name for your mic, and edit the DeviceName and DeviceNumber in MicToggleSettings.ini accordingly. Mine, for instance, were 6 and MASTER, respectively.
+To toggle the right device, use analysis.exe (compiled from a script found [here](https://www.autohotkey.com/docs/commands/SoundSet.htm)) to find the device number and name for your mic, and edit the DeviceName and DeviceNumber in MicToggleSettings.ini accordingly. Mine, for instance, were 6 and MASTER, respectively. The transparency of the mute icon and its offset from the bottom right can be adjusted.
 
 Executable files included for those who aren't about that autohotkey life.
 
